@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+
 import { ourFileRouter } from "@/app/api/uploadthing/core";
-import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-providers";
+import { Toaster } from '@/components/ui/toaster'
+import { Toaster as SonnarToaster } from '@/components/ui/sonner'
+
+
+import "./globals.css";
+import ModalProvider from "@/providers/modal-provider";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -36,7 +42,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <ModalProvider>
+            {children}
+            <Toaster />
+            <SonnarToaster position="bottom-left" />
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>

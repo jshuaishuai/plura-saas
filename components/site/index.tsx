@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ModeToggle } from "@/components/global/mode-toggle";
 
 interface NavigationProps {
-  user?: null | User
+  user?: any
 }
 
 const Navigation = (props: NavigationProps) => {
@@ -25,7 +25,7 @@ const Navigation = (props: NavigationProps) => {
       </nav>
       <aside className="flex gap-2 items-center">
         {
-          props.user && <Link href={"/agency"} className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80">Login</Link>
+          !props.user.userId && <Link href={"/agency"} className="bg-primary text-white p-2 px-4 rounded-md hover:bg-primary/80">Login</Link>
         }
         <UserButton />
         <ModeToggle />

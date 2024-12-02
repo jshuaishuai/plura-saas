@@ -6,7 +6,7 @@ import { UploadDropzone } from '@/lib/uploadthing'
 
 
 type Props = {
-    apiEndpoint: 'agencyLogo' | 'avatar' | 'subaccountLogo'
+    apiEndpoint: 'agencyLogo' | 'avatar' | 'subAccountLogo'
     onChange: (url?: string) => void
     value?: string
 }
@@ -52,13 +52,17 @@ const FileUpload = ({ apiEndpoint, onChange, value }: Props) => {
     return (
         <div className="w-full bg-muted/30">
             <UploadDropzone
-                endpoint="agencyLogo"
+                content={
+                    {
+                        label: 'Drag & Drop or Click to Upload',
+                    }
+                }
+                endpoint={apiEndpoint}
                 onClientUploadComplete={(res) => {
-                    console.log('%c [ res ]-57', 'font-size:13px; background:pink; color:#bf2c9f;', res)
                     onChange(res?.[0].url)
                 }}
                 onUploadError={(error: Error) => {
-                    console.log('%c [ error ]-61', 'font-size:13px; background:pink; color:#bf2c9f;', error)
+                    console.log('Upload Error', error)
                 }}
             />
         </div>
