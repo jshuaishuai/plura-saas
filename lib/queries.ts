@@ -571,3 +571,13 @@ export const deleteFunnelPage = async (funnelPageId: string) => {
 }
 
 
+// 获取页面详情
+export const getFunnelPageDetails = async (funnelPageId: string)=>{
+   const res =  await db.funnelPage.findUnique({
+        where: {
+            id: funnelPageId
+        }
+    });
+
+    return res;
+}
